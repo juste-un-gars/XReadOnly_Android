@@ -1,0 +1,34 @@
+/**
+ * @file inject.css
+ * @description Hides Twitter/X interaction buttons to enforce read-only mode.
+ *              Uses data-testid selectors which are relatively stable across updates.
+ */
+
+/* === Tweet interaction buttons === */
+[data-testid="like"],
+[data-testid="unlike"],
+[data-testid="retweet"],
+[data-testid="unretweet"],
+[data-testid="reply"],
+[data-testid="bookmark"],
+[data-testid="removeBookmark"] {
+  display: none !important;
+}
+
+/* === Compose area === */
+[data-testid="tweetTextarea_0"],
+[data-testid="toolBar"],
+[data-testid="tweetButtonInline"],
+[data-testid="tweetButton"] {
+  display: none !important;
+}
+
+/* === Bottom compose bar === */
+[data-testid="bottomBar"] {
+  display: none !important;
+}
+
+/* === Share button (may appear as separate element) === */
+[data-testid="share"] {
+  display: none !important;
+}

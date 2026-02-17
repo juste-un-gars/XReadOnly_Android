@@ -80,7 +80,15 @@ Single-activity WebView app that loads Twitter/X in **read-only mode**. Users ca
 | `InjectionScripts.kt` | CSS/JS injection helpers |
 
 ### External Link Handling
-Links outside `x.com`/`twitter.com` are intercepted via `shouldOverrideUrlLoading()` and opened in **Chrome incognito** mode. Falls back to system default browser if Chrome is unavailable.
+Links outside `x.com`/`twitter.com` are intercepted via `shouldOverrideUrlLoading()` and opened in **Firefox Focus** (`org.mozilla.focus`), which is a privacy-focused browser where every session is ephemeral by default. Falls back to system default browser if Firefox Focus is not installed. **Note:** Chrome's incognito intent extra (`EXTRA_OPEN_NEW_INCOGNITO_TAB`) is restricted to first-party Google apps and does not work for third-party apps — Firefox Focus is the recommended solution. Users should install Firefox Focus on their device for the best experience.
+
+### Deep Links (Twitter/X URL Handling)
+The app registers intent filters for `x.com`, `www.x.com`, `twitter.com`, `www.twitter.com`, and `mobile.twitter.com` so that clicking a Twitter link anywhere on the device can open it in XReadOnly instead of the default browser. Since we don't own these domains, **Android App Links verification is not possible** — these are unverified deep links.
+
+- **Android 11 and below:** The system shows a chooser dialog ("Open with: XReadOnly / Chrome / ...").
+- **Android 12+:** Unverified links don't trigger a chooser by default. The user must manually enable it: **Settings > Apps > XReadOnly > "Open by default" > enable x.com and twitter.com domains.**
+
+The `launchMode="singleTask"` ensures that if the app is already running, new deep links are delivered via `onNewIntent()` instead of creating a new activity. The `getDeepLinkUrl()` method validates the incoming URL against the allowed Twitter domains before loading.
 
 ### WebView Configuration
 JavaScript and DOM Storage must be enabled. Cookies are persisted via `CookieManager`. User-Agent must be set to standard Chrome mobile UA so Twitter serves the full mobile web version.

@@ -12,6 +12,8 @@
 # Signing
 *.jks
 *.keystore
+*.p12
+*.pfx
 signing.properties
 
 # Secrets
@@ -30,6 +32,10 @@ logs/
 
 # Kotlin
 *.class
+
+# APK/AAB binaries (releases go to GitHub Releases)
+*.apk
+*.aab
 
 # Session state & internal dev files
 SESSION_STATE.md
