@@ -31,5 +31,8 @@ logs/
 # Kotlin
 *.class
 
-# Session state (local dev tracking)
+# Session state & internal dev files
 SESSION_STATE.md
+model_CLAUDE.md
+.claude/sessions/
+.claude/settings.local.json
