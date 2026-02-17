@@ -1,0 +1,35 @@
+# Android/Gradle
+*.iml
+.gradle/
+/local.properties
+/.idea/
+/build/
+/app/build/
+/captures
+.externalNativeBuild/
+.cxx/
+
+# Signing
+*.jks
+*.keystore
+signing.properties
+
+# Secrets
+.env
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Kotlin
+*.class
+
+# Session state (local dev tracking)
+SESSION_STATE.md

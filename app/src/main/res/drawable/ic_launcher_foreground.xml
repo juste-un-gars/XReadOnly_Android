@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple "X" letter as foreground icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,34L48.5,49.5L38,66H44L51,54.5L58,66H64L53.5,49.5L64,34H58L51,45L44,34Z" />
+</vector>
