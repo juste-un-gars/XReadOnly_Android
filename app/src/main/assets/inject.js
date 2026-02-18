@@ -12,13 +12,12 @@
 
   var TAG = '[XReadOnly]';
 
-  // Selectors matching inject.css (caret kept visible per user choice)
-  var SELECTORS = [
+  // Selectors to hide completely (matching inject.css display:none rules)
+  var HIDE_SELECTORS = [
     '[data-testid="like"]',
     '[data-testid="unlike"]',
     '[data-testid="retweet"]',
     '[data-testid="unretweet"]',
-    '[data-testid="reply"]',
     '[data-testid="bookmark"]',
     '[data-testid="removeBookmark"]',
     '[data-testid="tweetTextarea_0"]',
@@ -29,15 +28,29 @@
     '[data-testid="share"]'
   ];
 
-  var SELECTOR_STRING = SELECTORS.join(',');
+  // Selectors to disable (visible but non-interactive, shows reply count)
+  var DISABLE_SELECTORS = [
+    '[data-testid="reply"]'
+  ];
+
+  // All blocked selectors (used for click interception)
+  var SELECTORS = HIDE_SELECTORS.concat(DISABLE_SELECTORS);
+
+  var HIDE_SELECTOR_STRING = HIDE_SELECTORS.join(',');
+  var DISABLE_SELECTOR_STRING = DISABLE_SELECTORS.join(',');
 
   /**
-   * Hides all matching elements currently in the DOM.
+   * Hides interaction elements and disables reply buttons (keeping count visible).
    */
   function hideInteractionElements() {
-    var elements = document.querySelectorAll(SELECTOR_STRING);
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = 'none';
+    var hidden = document.querySelectorAll(HIDE_SELECTOR_STRING);
+    for (var i = 0; i < hidden.length; i++) {
+      hidden[i].style.display = 'none';
+    }
+    var disabled = document.querySelectorAll(DISABLE_SELECTOR_STRING);
+    for (var i = 0; i < disabled.length; i++) {
+      disabled[i].style.pointerEvents = 'none';
+      disabled[i].style.opacity = '0.5';
     }
   }
 
